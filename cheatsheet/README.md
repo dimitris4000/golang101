@@ -8,6 +8,17 @@ Golang Cheatsheet
 4. [Go Dev](https://go.dev/)
 
 ## Variables/Constants
+```
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Printf("Hello world!")
+}
+```
+
+## Variables/Constants
 ### Types
 ```
 bool
@@ -176,11 +187,112 @@ var c1 complex64 = 3.2 + 5.4i
 fmt.Printf("%v\n", c1) // (3.2+5.4i)
 ```
 
-## Functions
-### Examples
-
 ## Flow control
-### Examples
+### Examples - if
+### Examples - for
+### Examples - switch
+
+## Functions
+### Examples - Basics
+```
+func plus(a int, b int) int {
+
+	return a + b
+}
+
+func plusPlus(a, b, c int) int {
+	return a + b + c
+}
+
+func plusMinus(a int, b int) (int, int) {
+
+	return a + b, a - b
+}
+
+func main() {
+	res := plus(1, 2)
+	fmt.Println("1+2 =", res)
+
+	res = plusPlus(1, 2, 3)
+	fmt.Println("1+2+3 =", res)
+
+	res1, res2 := plusMinus(3, 2)
+	fmt.Println("3+2 =", res1)
+	fmt.Println("3-2 =", res2)
+}
+```
+
+### Examples - Nameless functions
+```
+func main() {
+    // assign a function to a name
+    add := func(a, b int) int {
+        return a + b
+    }
+    // use the name to call the function
+    fmt.Println(add(3, 4))
+}
+```
+
+### Examples - Closures
+```
+func outer() (func() int, int) {
+    outer_var := 2
+    inner := func() int {
+        outer_var += 99 // outer_var from outer scope is mutated.
+        return outer_var
+    }
+    inner()
+    return inner, outer_var // return inner func and mutated 
+}
+
+func main() {
+    // use the name to call the function
+    add99, innerValue := outer()
+    fmt.Printf("%d %d", add99(), innerValue)
+}
+```
+
+### Examples - Variadic
+```
+func adder(args ...int) int {
+	total := 0
+	for _, v := range args {
+		total += v
+	}
+	return total
+}
+
+func main() {
+	fmt.Println(adder(1, 2, 3)) 	// 6
+	fmt.Println(adder(9, 9))	// 18
+
+	nums := []int{10, 20, 30}
+	fmt.Println(adder(nums...))	// 60
+}
+```
+
+### Examples - Defer
+```
+func closer(suffix string) {
+	fmt.Println("Closing Step "+suffix)
+}
+
+func main() {
+	fmt.Println("Step 1")
+    defer closer("1")
+	fmt.Println("Step 2")
+    defer closer("2")
+}
+```
+*will print*
+```
+Step 1
+Step 2
+Closing Step 2
+Closing Step 1
+```
+
 
 ## Packages
 ### Examples
