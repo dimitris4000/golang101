@@ -59,43 +59,59 @@ complex64 complex128
 |`!`|logical not|
 
 ### Conversions
+#### int - float
 ```
-// int - float
 i := 42
 f := float64(i)
 u := uint(f)
+```
 
-// int - string
+#### int - string
+```
 i, err := strconv.Atoi("-42")
 s := strconv.Itoa(-42)
 s := strconv.FormatInt(-42, 10)  // params (int, base)
 i, err := strconv.ParseInt("-42", 10, 64) // params (int, base, return size)
 s := strconv.FormatUint(42, 16)
 u, err := strconv.ParseUint("42", 10, 64)
+```
 
-// bool - string
+#### bool - string
+```
 s := strconv.FormatBool(true)
 b, err := strconv.ParseBool("true")
 
-// float - string
+```
+
+#### float - string
+```
 s := strconv.FormatFloat(3.1415, 'E', -1, 64)
 f, err := strconv.ParseFloat("3.1415", 64)
 
-// rune - string
+```
+
+#### rune - string
+```
 s := string(rune1)
 r := rune(str[2])
 
-// []byte - string
+```
+
+#### []byte - string
+```
 b := []byte("some text")
 s := string(bytes)
 
-// ascii - unicode
+```
+
+#### ascii - unicode
+```
 q := strconv.Quote("Hello, world!")
 q := strconv.QuoteToASCII("Hello, 世界")
 uq, err := strconv.Unquote(q)
+```
 
 [strconv documentation](https://golang.org/pkg/strconv/#ParseInt)
-```
 
 ### Examples
 ```
