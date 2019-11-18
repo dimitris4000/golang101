@@ -7,6 +7,12 @@ Golang Cheatsheet
 3. [Golag Docs](https://golang.org/pkg/)
 4. [Go Dev](https://go.dev/)
 
+## About Golang
+* Go is compiled language
+* Go is statically typed
+* Use `go fmt` to format/lint you code (or `goimports` which also takes care of you imports)
+* Use tab character to indent you code (this is imposed by `go fmt`)
+
 ## Variables/Constants
 ```
 package main
@@ -243,7 +249,7 @@ func outer() (func() int, int) {
         return outer_var
     }
     inner()
-    return inner, outer_var // return inner func and mutated 
+    return inner, outer_var // return inner func and mutated
 }
 
 func main() {
@@ -280,9 +286,9 @@ func closer(suffix string) {
 
 func main() {
 	fmt.Println("Step 1")
-    defer closer("1")
+	defer closer("1")
 	fmt.Println("Step 2")
-    defer closer("2")
+	defer closer("2")
 }
 ```
 *will print*
