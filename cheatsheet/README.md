@@ -98,28 +98,24 @@ u, err := strconv.ParseUint("42", 10, 64)
 ```
 s := strconv.FormatBool(true)
 b, err := strconv.ParseBool("true")
-
 ```
 
 #### float - string
 ```
 s := strconv.FormatFloat(3.1415, 'E', -1, 64)
 f, err := strconv.ParseFloat("3.1415", 64)
-
 ```
 
 #### rune - string
 ```
 s := string(rune1)
 r := rune(str[2])
-
 ```
 
 #### []byte - string
 ```
 b := []byte("some text")
 s := string(bytes)
-
 ```
 
 #### ascii - unicode
@@ -195,8 +191,110 @@ fmt.Printf("%v\n", c1) // (3.2+5.4i)
 
 ## Flow control
 ### Examples - if
+```
+if var1 < 100 {
+	return var1
+} else if var1 == 100 {
+	return 0
+} else {
+	return var1-100
+}
+```
+
+```
+if var1 := a + b; a < 100 {
+	return var1
+} else {
+	return var1 - 100
+}
+```
+
 ### Examples - for
+#### Typical loops
+```
+for i := 1; i < 10; i++ { // for loop
+	fmt.Println("test")
+}
+```
+
+```
+for i < 10  { // while loop
+}
+```
+
+```
+for { // infinite loop
+}
+```
+
+#### Breaking out of loops
+```
+for i := 5; i < 20; i++ {
+	for j := 0; j < i; j++ {
+		fmt.Println("")
+		if j > 15 {
+			break
+		}
+		fmt.Print(i, j)
+		if j > 10 {
+			continue
+		}
+		fmt.Print("-")
+	}
+}
+
+println("\n\n\n")
+```
+
+```
+mark1:
+	for i := 5; i < 20; i++ {
+		for j := 0; j < i; j++ {
+			fmt.Println("")
+			if j > 15 {
+				continue mark1
+			}
+			fmt.Print(i, j)
+			if j > 10 {
+				break mark1
+			}
+			fmt.Print("-")
+		}
+	}
+```
+
 ### Examples - switch
+*TODO*
+
+### Examples - +1 special for concurrency
+```
+switch os := runtime.GOOS; os {
+case "darwin":
+	fmt.Println("Mac OS Hipster")
+case "linux":
+	fmt.Println("Linux Geek")
+default:
+	fmt.Println("Other")
+}
+
+number := 7
+switch {
+	case number < 7:
+		fmt.Println("smaller")
+	case number == 7:
+		fmt.Println("equal")
+	case number > 7:
+		fmt.Println("greater")
+}
+
+byte := 'a'
+switch char {
+	case 'a', 'e', 'i', 'o', 'u':
+		fmt.Println("a vowel")
+	default:
+		fmt.Println("a consonant")
+}
+```
 
 ## Functions
 ### Examples - Basics
@@ -302,12 +400,115 @@ Closing Step 1
 
 ## Packages
 ### Examples
+*TODO*
 
-## Arrays, Slices
-### Examples
+## Arrays
+### Examples - Arrays
+```
+var a [5]int // declare an int array with length 5
+a[0] = 42 // arrays are zero-based
+i := a[0]
+
+// declare and initialize
+a := [5]string{"a", "b", "c", "d", "e"}
+a := [...]int{"a", "b", "c", "d", "e"} // let compiler figure out array length
+```
+
+## Slices
+Slices are references to an underling arrays, giving the impression of an
+array. They provide a way to work with sequencies of typed data.
+
+The zero value of a slice is `nil`.
+
+### Memory structure
+In the background slices have:
+* a pointer to the underling array
+* a length counter which can be retrieved by `len(slice)`
+* a capacity counter which can be retrieved by `cap(slice)`
+
+### Examples - Creating Slices
+```
+slice1 := []string{"a", "b", "c"}
+
+// create an underling [10]int array and set the length to 5
+slice2 := make([]int, 5, 10)
+fmt.Println(len(slice2))  // 5
+fmt.Println(cap(slice2))  // 10
+
+array1 := [3]string{"one", "two", "three"}
+slice3 := array1[:] // create a slice on array1
+slice4 := array1[1:3] // create a slice on items 0,1 of array1
+```
+
+### Examples - Iterate over Slices
+```
+for index, value := range slice {
+	fmt.Println(index, value)
+}
+
+// Iterate over values
+for _, value := range slice {
+	fmt.Println(index, value)
+}
+```
+
+### Examples - Append to Slices
+```
+slice1 := []string{"one", "two", "three"}
+slice2 := []string{"1", "2", "3"}
+
+slice1 = append(slice1, "four") // append single value
+slice1 = append(slice1, slice2...) // append an other slice
+```
+
+### Examples - Copy Slices
+```
+slice1 := []string{"one", "two", "three"}
+slice2 := []string{"1", "2", "3", "4"}
+
+c := copy(slice2, slice1)  // slice1 == []string{"1", "2", "3"},  c == 3
+```
+
 
 ## Maps
-### Examples
+Zero value of map is `nil`
+
+### Examples - Create maps
+```
+map1 := map[string]bool{
+	"key1": true,
+	"key2": true,
+}
+
+map2 := make(map[string]boolean) // Create an empty map. i.e. len(map2) == 0
+```
+
+### Examples - Editing maps
+```
+map1 := map[string]bool{
+	"key1": true,
+	"key2": true,
+}
+
+map1["key3"] = false  // create and set a new key:value pair
+
+delete(map1, "key2")  // delete key2
+```
+
 
 ## Structs
 ### Examples
+```
+// Declaration
+type Vertex struct {
+    X, Y int
+}
+
+// Creating
+var v = Vertex{1, 2}
+var v = Vertex{X: 1, Y: 2} // Creates a struct by defining values with keys
+var v = []Vertex{{1,2},{5,2},{5,5}} // Initialize a slice of structs
+
+// Accessing members
+v.X = 4
+```
