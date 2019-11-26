@@ -8,10 +8,13 @@ Golang Cheatsheet
 4. [Go Dev](https://go.dev/)
 
 ## About Golang
-* Go is compiled language
-* Go is statically typed
-* Use `go fmt` to format/lint you code (or `goimports` which also takes care of you imports)
-* Use tab character to indent you code (this is imposed by `go fmt`)
+* Go was created by Google and release about 10 years ago. In order to run on their servers and focused on code readability.
+* Use `go fmt` to format/lint your code (or `goimports` which also takes care of your imports)
+* Go is compiled language which generates platform-specific binaries.
+* Go is statically typed. That means that the compiler knows at compile-time the types of our variables and and
+	1. can perform checks on them to verify our code
+	2. can optimize for memory usage
+* "Tabs or Spaces?" Go uses tabs to indent your code (this is imposed by `go fmt`)
 
 ## Variables/Constants
 ```
