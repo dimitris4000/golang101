@@ -11,12 +11,12 @@ Golang Cheatsheet
 * Go was created by Google and release about 10 years ago. In order to run on their servers and focused on code readability.
 * Use `go fmt` to format/lint your code (or `goimports` which also takes care of your imports)
 * Go is compiled language which generates platform-specific binaries.
-* Go is statically typed. That means that the compiler knows at compile-time the types of our variables and and
+* Go is statically typed. That means that the compiler knows at compile-time the types of our variables and
 	1. can perform checks on them to verify our code
 	2. can optimize for memory usage
 * "Tabs or Spaces?" Go uses tabs to indent your code (this is imposed by `go fmt`)
 
-## Variables/Constants
+## The typical "Hello world!"
 ```
 package main
 
@@ -79,57 +79,6 @@ complex64 complex128
 |`\|\|`|logical or|
 |`!`|logical not|
 
-### Conversions
-#### int - float
-```
-i := 42
-f := float64(i)
-u := uint(f)
-```
-
-#### int - string
-```
-i, err := strconv.Atoi("-42")
-s := strconv.Itoa(-42)
-s := strconv.FormatInt(-42, 10)  // params (int, base)
-i, err := strconv.ParseInt("-42", 10, 64) // params (int, base, return size)
-s := strconv.FormatUint(42, 16)
-u, err := strconv.ParseUint("42", 10, 64)
-```
-
-#### bool - string
-```
-s := strconv.FormatBool(true)
-b, err := strconv.ParseBool("true")
-```
-
-#### float - string
-```
-s := strconv.FormatFloat(3.1415, 'E', -1, 64)
-f, err := strconv.ParseFloat("3.1415", 64)
-```
-
-#### rune - string
-```
-s := string(rune1)
-r := rune(str[2])
-```
-
-#### []byte - string
-```
-b := []byte("some text")
-s := string(bytes)
-```
-
-#### ascii - unicode
-```
-q := strconv.Quote("Hello, world!")
-q := strconv.QuoteToASCII("Hello, 世界")
-uq, err := strconv.Unquote(q)
-```
-
-[strconv documentation](https://golang.org/pkg/strconv/#ParseInt)
-
 ### Examples
 ```
 var foo1 int // declaration without initialization
@@ -191,6 +140,57 @@ fmt.Printf("%.15f\n", f1)
 var c1 complex64 = 3.2 + 5.4i
 fmt.Printf("%v\n", c1) // (3.2+5.4i)
 ```
+
+### Conversions
+#### int - float
+```
+i := 42
+f := float64(i)
+u := uint(f)
+```
+
+#### int - string
+```
+i, err := strconv.Atoi("-42")
+s := strconv.Itoa(-42)
+s := strconv.FormatInt(-42, 10)  // params (int, base)
+i, err := strconv.ParseInt("-42", 10, 64) // params (int, base, return size)
+s := strconv.FormatUint(42, 16)
+u, err := strconv.ParseUint("42", 10, 64)
+```
+
+#### bool - string
+```
+s := strconv.FormatBool(true)
+b, err := strconv.ParseBool("true")
+```
+
+#### float - string
+```
+s := strconv.FormatFloat(3.1415, 'E', -1, 64)
+f, err := strconv.ParseFloat("3.1415", 64)
+```
+
+#### rune - string
+```
+s := string(rune1)
+r := rune(str[2])
+```
+
+#### []byte - string
+```
+b := []byte("some text")
+s := string(bytes)
+```
+
+#### ascii - unicode
+```
+q := strconv.Quote("Hello, world!")
+q := strconv.QuoteToASCII("Hello, 世界")
+uq, err := strconv.Unquote(q)
+```
+
+[strconv documentation](https://golang.org/pkg/strconv/#ParseInt)
 
 ## Flow control
 ### Examples - if
