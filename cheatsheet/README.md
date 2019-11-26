@@ -297,7 +297,7 @@ switch char {
 ```
 
 ### Examples - +1 special for concurrency
-*UPCOMMING*
+*UPCOMING*
 
 ## Functions
 ### Examples - Basics
