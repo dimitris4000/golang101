@@ -267,9 +267,6 @@ mark1:
 ```
 
 ### Examples - switch
-*TODO*
-
-### Examples - +1 special for concurrency
 ```
 switch os := runtime.GOOS; os {
 case "darwin":
@@ -298,6 +295,9 @@ switch char {
 		fmt.Println("a consonant")
 }
 ```
+
+### Examples - +1 special for concurrency
+*UPCOMMING*
 
 ## Functions
 ### Examples - Basics
