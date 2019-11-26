@@ -196,19 +196,19 @@ uq, err := strconv.Unquote(q)
 ### Examples - if
 ```
 if var1 < 100 {
-	return var1
+	fmt.Println(var1)
 } else if var1 == 100 {
-	return 0
+	fmt.Println(0)
 } else {
-	return var1-100
+	fmt.Println(var1 - 100)
 }
 ```
 
 ```
 if var1 := a + b; a < 100 {
-	return var1
+	fmt.Println(var1)
 } else {
-	return var1 - 100
+	fmt.Println(var1 - 100)
 }
 ```
 
