@@ -400,11 +400,6 @@ Closing Step 2
 Closing Step 1
 ```
 
-
-## Packages
-### Examples
-*TODO*
-
 ## Arrays
 ### Examples - Arrays
 ```
@@ -515,3 +510,41 @@ var v = []Vertex{{1,2},{5,2},{5,5}} // Initialize a slice of structs
 // Accessing members
 v.X = 4
 ```
+
+## Packages
+* Go will treat every directory under the project root which contains .go files as a package
+* All .go files in a package are concatinated(smart concatination) before compilation
+* Package members (e.g. vars, funcs, ...) MUST start with capital letter
+* When importing package we must always use the full package names
+
+### Examples - imports
+```
+// Singleline import. (Compiler will accept this but "go fmt" will dissagry)
+import "fmt"
+import "log"
+
+// Multiline import
+import (
+    "fmt"
+    "log"
+    "os"
+)
+
+// Multiline import, with alias
+import (
+    "fmt"
+    standarLog "log"
+    "os"
+)
+```
+
+### Creating a package (for Go >=1.11.1)
+Type the following command in your application's route if `go.mod` does not exit
+```
+go mod init APPLICATION_NAME
+```
+
+Remember to add the `package PACKAGE_NAME` in all .go files.
+
+### Examples
+*TODO*
