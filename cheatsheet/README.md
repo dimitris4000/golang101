@@ -215,18 +215,10 @@ uq, err := strconv.Unquote(q)
 ## Flow control
 ### Examples - if
 ```
-if var1 < 100 {
+if var1 := a + b; var1 < 100 {
 	fmt.Println(var1)
 } else if var1 == 100 {
 	fmt.Println(0)
-} else {
-	fmt.Println(var1 - 100)
-}
-```
-
-```
-if var1 := a + b; a < 100 {
-	fmt.Println(var1)
 } else {
 	fmt.Println(var1 - 100)
 }
