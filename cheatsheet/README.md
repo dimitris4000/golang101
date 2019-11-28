@@ -558,5 +558,3 @@ go mod init APPLICATION_NAME
 
 Remember to add the `package PACKAGE_NAME` in all .go files.
 
-### Examples
-*TODO*
