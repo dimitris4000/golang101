@@ -8,10 +8,10 @@ Golang Cheatsheet
 4. [Go Dev](https://go.dev/)
 
 ## About Golang
-* Go was created by Google and release about 10 years ago. In order to run on their servers and focused on code readability.
-* Use `go fmt` to format/lint your code (or `goimports` which also takes care of your imports)
+* Go was created by Google and released about 10 years ago in order to run on their servers and is focused on code readability.
 * Go is compiled language which generates platform-specific binaries.
 * Go is statically typed. That means that the compiler knows at compile-time the types of our variables and
+* Use `go fmt` to format/lint your code (or `goimports` which also takes care of your imports)
 	1. can perform checks on them to verify our code
 	2. can optimize for memory usage
 * "Tabs or Spaces?" Go uses tabs to indent your code (this is imposed by `go fmt`)
