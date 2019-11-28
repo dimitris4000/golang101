@@ -8,10 +8,30 @@ Golang Cheatsheet
 4. [Go Dev](https://go.dev/)
 
 ## About Golang
-* Go was created by Google and release about 10 years ago. In order to run on their servers and focused on code readability.
-* Use `go fmt` to format/lint your code (or `goimports` which also takes care of your imports)
+* Go was created by Google and released about 10 years ago in order to run on their servers and is focused on code readability.
 * Go is compiled language which generates platform-specific binaries.
 * Go is statically typed. That means that the compiler knows at compile-time the types of our variables and
+* `go` binary is the standard tool of the language and is used to perform various tasks
+```
+	bug         start a bug report
+	build       compile packages and dependencies
+	clean       remove object files and cached files
+	doc         show documentation for package or symbol
+	env         print Go environment information
+	fix         update packages to use new APIs
+	fmt         gofmt (reformat) package sources
+	generate    generate Go files by processing source
+	get         add dependencies to current module and install them
+	install     compile and install packages and dependencies
+	list        list packages or modules
+	mod         module maintenance
+	run         compile and run Go program
+	test        test packages
+	tool        run specified go tool
+	version     print Go version
+	vet         report likely mistakes in packages
+```
+* Use `go fmt` to format/lint your code (or `goimports` which also takes care of your imports)
 	1. can perform checks on them to verify our code
 	2. can optimize for memory usage
 * "Tabs or Spaces?" Go uses tabs to indent your code (this is imposed by `go fmt`)
@@ -195,18 +215,10 @@ uq, err := strconv.Unquote(q)
 ## Flow control
 ### Examples - if
 ```
-if var1 < 100 {
+if var1 := a + b; var1 < 100 {
 	fmt.Println(var1)
 } else if var1 == 100 {
 	fmt.Println(0)
-} else {
-	fmt.Println(var1 - 100)
-}
-```
-
-```
-if var1 := a + b; a < 100 {
-	fmt.Println(var1)
 } else {
 	fmt.Println(var1 - 100)
 }
