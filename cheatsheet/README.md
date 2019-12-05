@@ -661,9 +661,6 @@ type Car interface {
 ```
 var x interface{} = "foo"
 
-var s string = x.(string)
-fmt.Println(s)     // "foo"
-
 s, ok := x.(string)
 fmt.Println(s, ok) // "foo true"
 
