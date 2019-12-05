@@ -557,6 +557,7 @@ import (
 * Use `*<TYPE>` as a variable type to designate a pointer to this type of values
 
 ### Example
+```
 func main() {
 	type Coord struct {
 		X float32
