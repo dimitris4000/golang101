@@ -646,6 +646,48 @@ func main() {
 }
 ```
 
+## Interfaces
+Interface are used to tell Go to check for specific behaviours(methods) on a given object (struct instance)
+
+### Examples - declare an interface
+```
+type Car interface {
+	BatteryOk() bool
+	ChargeBattery()
+}
+```
+
+### Example - check for an interface type
+```
+var x interface{} = "foo"
+
+s, ok := x.(string)
+fmt.Println(s, ok) // "foo true"
+
+n, ok := x.(int)
+fmt.Println(n, ok) // "0 false"
+```
+
+### Example - type switching
+```
+func print(x interface{}) {
+	switch v := x.(type) {
+	case int:
+		fmt.Println("x is an int with value", v) // here v has type int
+	case string:
+		fmt.Println("x is a string with value", v) // here v has type string
+	default:
+		fmt.Println("type unknown", v) // here v has type interface{}
+	}
+}
+
+func main() {
+	var x interface{} = true
+
+	print(x)
+}
+```
+
 
 ### Creating a package (for Go >=1.11.1)
 Type the following command in your application's route if `go.mod` does not exit
