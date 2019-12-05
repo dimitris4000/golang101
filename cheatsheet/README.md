@@ -550,6 +550,147 @@ import (
 )
 ```
 
+## Pointers in go
+* Avoid using pointers in any other type of variable than *struct*
+* Use `&` in front of a variable name to get a pointer to the variable
+* Use `*` in front of a pointer variable to get the value of this pointer
+* Use `*<TYPE>` as a variable type to designate a pointer to this type of values
+
+### Example
+func main() {
+	type Coord struct {
+		X float32
+		Y float32
+	}
+
+	c1 := Coord{X: 1, Y: 2}
+	c2 := &c1              // <<< Get the memory address to c1 and put it in pc1
+	fmt.Printf("%T\n", c2) // *main.Coord
+
+	fmt.Println(c1) // {1 2}
+	fmt.Println(c2) // {1 2}
+	c1.X = 5
+	fmt.Println(c1) // {5 2}
+	fmt.Println(c2) // {5 2}
+
+	add := func(a, b Coord) Coord {
+		return Coord{a.X + b.X, a.Y + b.Y}
+	}
+	increase := func(a *Coord, b Coord) { // <<< Use pointer as a parameter
+		a.X += b.X
+		a.Y += b.Y
+	}
+
+	c3 := Coord{10, 20}
+	res1 := add(c1, c3)
+	c1.X++
+	fmt.Println(c1)
+	fmt.Println(res1)
+
+	increase(&c1, c3) // <<< Pass a pointer parameter
+	fmt.Println(c1)
+
+	pc3 := &c3
+	increase(&c1, *pc3) // <<< Pass a pointer as a value parameter (pc3)
+	fmt.Println(c1)
+}
+```
+
+## Methods
+* `Pointer semanctics` when we are using pointers as return type to the New... function and as the receiver to our methods
+* `Value semantics` when we are using values as return type to the New... function and as the receiver to our methods
+* We should avoid using mixed semantics when we are implementing our methods for better readability. (but, some times it is required and we cannot avoid it)
+
+```
+type Coord struct {
+	X float32
+	Y float32
+}
+
+func NewCoord(x, y float32) Coord {
+	return Coord{x, y}
+}
+
+func (c Coord) add(b Coord) Coord { // <<< Use value as a receiver
+	return Coord{c.X + b.X, c.Y + b.Y}
+}
+func (c *Coord) increase(b Coord) { // <<< Use pointer as a receiver
+	c.X += b.X
+	c.Y += b.Y
+}
+
+func main() {
+	c1 := NewCoord(1, 2)
+	c2 := &c1
+	fmt.Printf("%T\n", c2) // *main.Coord
+
+	fmt.Println(c1) // {1 2}
+	fmt.Println(c2) // {1 2}
+	c1.X = 5
+	fmt.Println(c1) // {5 2}
+	fmt.Println(c2) // {5 2}
+
+	c3 := NewCoord(10, 20)
+	res1 := c1.add(c3)
+	c1.X++
+	fmt.Println(c1)
+	fmt.Println(res1)
+
+	c1.increase(c3)
+	fmt.Println(c1)
+
+	pc3 := &c3
+	c1.increase(*pc3)
+	fmt.Println(c1)
+}
+```
+
+## Interfaces
+Interface are used to tell Go to check for specific behaviours(methods) on a given object (struct instance)
+
+### Examples - declare an interface
+```
+type Car interface {
+	BatteryOk() bool
+	ChargeBattery()
+}
+```
+
+### Example - check for an interface type
+```
+var x interface{} = "foo"
+
+var s string = x.(string)
+fmt.Println(s)     // "foo"
+
+s, ok := x.(string)
+fmt.Println(s, ok) // "foo true"
+
+n, ok := x.(int)
+fmt.Println(n, ok) // "0 false"
+```
+
+### Example - type switching
+```
+func print(x interface{}) {
+	switch v := x.(type) {
+	case int:
+		fmt.Println("x is an int with value", v) // here v has type int
+	case string:
+		fmt.Println("x is a string with value", v) // here v has type string
+	default:
+		fmt.Println("type unknown", v) // here v has type interface{}
+	}
+}
+
+func main() {
+	var x interface{} = true
+
+	print(x)
+}
+```
+
+
 ### Creating a package (for Go >=1.11.1)
 Type the following command in your application's route if `go.mod` does not exit
 ```
@@ -557,4 +698,3 @@ go mod init APPLICATION_NAME
 ```
 
 Remember to add the `package PACKAGE_NAME` in all .go files.
-
