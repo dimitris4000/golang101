@@ -690,7 +690,7 @@ func main() {
 
 
 ### Creating a new package or application (for Go >=1.11.1)
-(Install go)[https://golang.org/dl/] to your environment, if it is not already installed.
+[Install go](https://golang.org/dl/) to your environment, if it is not already installed.
 
 Type the following command in your application's route if `go.mod` does not exist. This will create a new go project.
 ```
