@@ -689,10 +689,10 @@ func main() {
 ```
 
 
-### Creating a package (for Go >=1.11.1)
-Type the following command in your application's route if `go.mod` does not exit
+### Creating a package or application (for Go >=1.11.1)
+Type the following command in your application's route if `go.mod` does not exist. This will create a new go project.
 ```
 go mod init APPLICATION_NAME
 ```
 
-Remember to add the `package PACKAGE_NAME` in all .go files.
+Then to create a package the only thing to do it to ceate a directory with the package's name and remember to add the `package PACKAGE_NAME` in all .go files in the directory.
