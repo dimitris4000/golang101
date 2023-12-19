@@ -203,6 +203,12 @@ b := []byte("some text")
 s := string(bytes)
 ```
 
+#### []rune - string
+```
+b := []rune("some text")
+s := string(runes)
+```
+
 #### ascii - unicode
 ```
 q := strconv.Quote("Hello, world!")
